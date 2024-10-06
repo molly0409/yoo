@@ -6,10 +6,10 @@ int main(int argc, char *argv[]) {
 	
 	scanf("%i %i",&a,&b);
 	printf("+ result is %d\n",(a+b));
-    printf("- result is %d\n",(a-b));
-    printf("* result is %d\n",(a*b));
-    printf("/ result is %d\n",(a/b));
-    printf("%% result is %d\n",(a%b));
+	printf("- result is %d\n",(a-b));
+	printf("* result is %d\n",(a*b));
+	printf("/ result is %d\n",(a/b));
+	printf("%% result is %d\n",(a%b));
     
 	return 0;
 }
