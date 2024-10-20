@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]) {
 	int answer=36;
-	int num,i;
+	int num,i=0;
 	
 	do
 	{
