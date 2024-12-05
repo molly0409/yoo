@@ -280,7 +280,7 @@ int main(int argc, const char * argv[]) {
 		turn = (turn + 1)%N_PLAYER;		
         
 //shark		
-		if(turn==0||game_end() == 1)
+		if(turn==0)
 		{
 			int shark_pos;
 			
@@ -289,7 +289,27 @@ int main(int argc, const char * argv[]) {
 			//check die
 			checkDie();
 		}
-
+		//if turn=2 player end or died
+		if(player_status[2]!=PLAYERSTATUS_LIVE&&turn==2&&game_end()==0)
+		{
+			int shark_pos;
+			
+			shark_pos=board_stepShark();
+			printf("Shark moved to %i\n",shark_pos);
+			//check die
+			checkDie();
+		}
+		
+		//if turn=1 ana turn=2 end or died
+		if(player_status[2]!=PLAYERSTATUS_LIVE&&player_status[1]!=PLAYERSTATUS_LIVE&&turn==1&&game_end()==0)
+		{
+			int shark_pos;
+			
+			shark_pos=board_stepShark();
+			printf("Shark moved to %i\n",shark_pos);
+			//check die
+			checkDie();
+		}
 		//step 2-5. end process
 		game_end();
 		
