@@ -89,11 +89,12 @@ int board_stepShark(void)
 	int i=0;
 	 
 	shark_position+=rand()%MAX_SHARKSTEP+1;
-	for(i=0;i<shark_position;i++)
+	for(i=0;i<=shark_position;i++)
 	{
 		board_status[i] = BOARDSTATUS_NOK;
 	}
 	
+	return shark_position;
 }
 // ----- EX. 5 : shark ------------
 

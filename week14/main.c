@@ -175,7 +175,7 @@ int getWinner(void)
     //if player_coin and turn same
 	for(i=0;i<N_PLAYER;i++)
 	{
-		if(player_turn_number==player_tn[i]&&winner>i)
+		if(player_turn_number==player_tn[i]&&winner>i&&player_coin[i]==max_coin&&player_status[i]==PLAYERSTATUS_END)
 		{
 			winner=i;
 		}
@@ -232,7 +232,8 @@ int main(int argc, const char * argv[]) {
         //step 2-1. status printing
 // ----- EX. 3 : board ------------
 		board_printBoardStatus();
-		pos+=rolldie();
+		dieResult = rolldie();
+		pos+=dieResult;
 		
 // ----- EX. 3 : board ------------
 // ----- EX. 4 : player ------------
@@ -246,7 +247,7 @@ int main(int argc, const char * argv[]) {
         scanf("%d", &dum);
         fflush(stdin);
 // ----- EX. 4 : player ------------
-        dieResult = rolldie();
+        
         
 		player_tn[turn]++;
         
@@ -271,7 +272,7 @@ int main(int argc, const char * argv[]) {
 		if(coinResult>0)
 		{
 			player_coin[turn]+=coinResult;
-			printf("player: %c get %d coin! \n",player_name[turn],coinResult);	
+			printf("player: %s get %d coin! \n",player_name[turn],coinResult);	
 		}
 		
 		
@@ -279,13 +280,14 @@ int main(int argc, const char * argv[]) {
 		turn = (turn + 1)%N_PLAYER;		
         
 //shark		
-		if(turn==0)
+		if(turn==0||game_end() == 1)
 		{
-			int shark_pos=board_stepShark();
+			int shark_pos;
+			
+			shark_pos=board_stepShark();
 			printf("Shark moved to %i\n",shark_pos);
 			//check die
 			checkDie();
-			
 		}
 
 		//step 2-5. end process
